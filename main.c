@@ -55,6 +55,7 @@ int   scd_opt;
 int   cd_opt;
 int   mx_opt;
 int   mlist_opt;	/* macro listing main flag */
+int   fns_opt;		/* fns output flag */
 int   xlist;		/* listing file main flag */
 int   list_level;	/* output level */
 int   asm_opt[8];	/* assembler options */
@@ -123,6 +124,10 @@ main(int argc, char **argv)
 				/* forces macros expansion */
 				else if (!strcmp(argv[i], "-m"))
 					mlist_opt = 1;
+
+				/* forces fns output */
+				else if (!strcmp(argv[i], "-f"))
+					fns_opt = 1;
 
 				/* no header */
 				else if (!strcmp(argv[i], "-raw"))
@@ -499,7 +504,8 @@ main(int argc, char **argv)
 		show_seg_usage();
 
 	/* GrP dump function addresses */
-	funcdump(fns_fname, in_fname);
+	if (fns_opt)
+		funcdump(fns_fname, in_fname);
 
 	/* ok */
 	return(0);
@@ -561,6 +567,7 @@ help(void)
 	printf("-l #   : listing file output level (0-3)\n");
 	printf("-m     : force macro expansion in listing\n");
 	printf("-raw   : prevent adding a ROM header\n");
+	printf("-f       : output fns\n");
 	if (machine->type == MACHINE_PCE) {
 		printf("-cd    : create a CD-ROM binary image\n");
 		printf("-scd   : create a Super CD-ROM binary image\n");
