@@ -8,6 +8,7 @@
 /* locals */
 static int ines_prg;		/* number of prg banks */
 static int ines_chr;		/* number of character banks */
+static int ines_trn;        /* presence of trainer */
 static int ines_mapper[2];	/* rom mapper type */
 static struct INES {		/* INES rom header */
 	unsigned char id[4];
@@ -272,6 +273,36 @@ nes_inesmir(int *ip)
 	
 	ines_mapper[0] &= 0xF0;
 	ines_mapper[0] |= (value  & 0x0F);
+
+	if (pass == LAST_PASS) 
+	{
+		println();
+	}
+}
+
+
+/* ----
+ * do_inestrn()
+ * ----
+ * .inestrn pseudo
+ */
+
+void
+nes_inestrn(int *ip)
+{
+	if (!evaluate(ip, ';'))
+		return;
+
+	if ((value < 0) || (value > 1)) 
+	{
+		error("Trainer value out of range!");
+	
+		return;
+	}
+	
+	ines_trn = value;
+	ines_mapper[0] &= 0xFB;
+	ines_mapper[0] |= (value << 2);
 
 	if (pass == LAST_PASS) 
 	{

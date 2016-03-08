@@ -89,15 +89,16 @@
 #define P_INESCHR	38	// .ineschr
 #define P_INESMAP	39	// .inesmap
 #define P_INESMIR	40	// .inesmir
-#define P_OPT		41	// .opt
-#define P_INCTILE	42	// .inctile
-#define P_INCMAP	43	// .incmap
-#define P_MML		44	// .mml
-#define P_PROC		45	// .proc
-#define P_ENDP		46	// .endp
-#define P_PGROUP	47	// .procgroup
-#define P_ENDPG		48	// .endprocgroup
-#define P_CALL		49	// .call
+#define P_INESTRN	41	// .inesmir
+#define P_OPT		42	// .opt
+#define P_INCTILE	43	// .inctile
+#define P_INCMAP	44	// .incmap
+#define P_MML		45	// .mml
+#define P_PROC		46	// .proc
+#define P_ENDP		47	// .endp
+#define P_PGROUP	48	// .procgroup
+#define P_ENDPG		49	// .endprocgroup
+#define P_CALL		50	// .call
 
 /* symbol flags */
 #define MDEF	3	/* multiply defined */

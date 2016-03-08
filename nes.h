@@ -7,20 +7,23 @@ void nes_inesprg(int *ip);
 void nes_ineschr(int *ip);
 void nes_inesmap(int *ip);
 void nes_inesmir(int *ip);
+void nes_inestrn(int *ip);
 
 /* NES specific pseudos */
-struct t_opcode nes_pseudo[11] = {
+struct t_opcode nes_pseudo[13] = {
 	{NULL,  "DEFCHR",  nes_defchr,  PSEUDO, P_DEFCHR,  0},
 	{NULL,  "INESPRG", nes_inesprg, PSEUDO, P_INESPRG, 0},
 	{NULL,  "INESCHR", nes_ineschr, PSEUDO, P_INESCHR, 0},
 	{NULL,  "INESMAP", nes_inesmap, PSEUDO, P_INESMAP, 0},
 	{NULL,  "INESMIR", nes_inesmir, PSEUDO, P_INESMIR, 0},
+	{NULL,  "INESTRN", nes_inestrn, PSEUDO, P_INESTRN, 0},
 
 	{NULL, ".DEFCHR",  nes_defchr,  PSEUDO, P_DEFCHR,  0},
 	{NULL, ".INESPRG", nes_inesprg, PSEUDO, P_INESPRG, 0},
 	{NULL, ".INESCHR", nes_ineschr, PSEUDO, P_INESCHR, 0},
 	{NULL, ".INESMAP", nes_inesmap, PSEUDO, P_INESMAP, 0},
 	{NULL, ".INESMIR", nes_inesmir, PSEUDO, P_INESMIR, 0},
+	{NULL, ".INESTRN", nes_inestrn, PSEUDO, P_INESTRN, 0},
 	{NULL, NULL, NULL, 0, 0, 0}
 };
 

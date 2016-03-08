@@ -42,13 +42,17 @@ char  out_fname[128];	/* output */
 char  bin_fname[128];	/* binary */
 char  lst_fname[128];	/* listing */
 char  fns_fname[128];	/* functions */
-char *prg_name;	/* program name */
+char  trn_fname[128];   /* trainer */
+char *prg_name;		/* program name */
+char *trainer[512]; /* trainer bin */
 FILE *in_fp;	/* file pointers, input */
 FILE *lst_fp;	/* listing */
+FILE *in_trainer; /* trainer bin file */
 char  section_name[4][8] = { "  ZP", " BSS", "CODE", "DATA" };
 int   dump_seg;
 int   develo_opt;
 int   header_opt;
+int   trainer_opt;
 int   srec_opt;
 int   run_opt;
 int   scd_opt;
@@ -99,6 +103,7 @@ main(int argc, char **argv)
 	/* init assembler options */
 	list_level = 2;
 	header_opt = 1;
+	trainer_opt = 0;
 	develo_opt = 0;
 	mlist_opt = 0;
 	srec_opt = 0;
@@ -148,6 +153,12 @@ main(int argc, char **argv)
 					/* check range */
 					if (list_level < 0 || list_level > 3)
 						list_level = 2;
+				}
+
+				/* trainer */
+				else if (!strcmp(argv[i], "-t")) {
+					trainer_opt = 1;
+					strcpy(trn_fname, argv[++i]);
 				}
 
 				/* help */
@@ -484,6 +495,12 @@ main(int argc, char **argv)
 				/* write header */
 				if (header_opt)
 					machine->write_header(fp, max_bank + 1);
+
+				if (trainer_opt) {
+					in_trainer = fopen(trn_fname, "rb");
+					fread(trainer, 1, 512, in_trainer);
+					fwrite(trainer, 1, 512, fp);
+				}
 		
 				/* write rom */
 				fwrite(rom, 8192, (max_bank + 1), fp);
@@ -563,19 +580,20 @@ help(void)
 
 	/* display help */
 	printf("%s [-options] [-? (for help)] infile\n\n", prg_name);
-	printf("-s/S   : show segment usage\n");
-	printf("-l #   : listing file output level (0-3)\n");
-	printf("-m     : force macro expansion in listing\n");
-	printf("-raw   : prevent adding a ROM header\n");
+	printf("-s/S     : show segment usage\n");
+	printf("-l #     : listing file output level (0-3)\n");
+	printf("-m       : force macro expansion in listing\n");
 	printf("-f       : output fns\n");
+	printf("-raw     : prevent adding a ROM header\n");
+	printf("-t <bin> : trainer binary\n");
 	if (machine->type == MACHINE_PCE) {
-		printf("-cd    : create a CD-ROM binary image\n");
-		printf("-scd   : create a Super CD-ROM binary image\n");
-		printf("-dev   : assemble and run on the Develo Box\n");
-		printf("-mx    : create a Develo MX file\n");
+		printf("-cd      : create a CD-ROM binary image\n");
+		printf("-scd     : create a Super CD-ROM binary image\n");
+		printf("-dev     : assemble and run on the Develo Box\n");
+		printf("-mx      : create a Develo MX file\n");
 	}
-	printf("-srec  : create a Motorola S-record file\n");
-	printf("infile : file to be assembled\n");
+	printf("-srec    : create a Motorola S-record file\n");
+	printf("infile   : file to be assembled\n");
 }
 
 
