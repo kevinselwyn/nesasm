@@ -485,7 +485,7 @@ do_bank(int *ip)
 	/* get bank index */
 	if (!evaluate(ip, 0))
 		return;
-	if (value > bank_limit) {
+	if ((int)value > bank_limit) {
 		error("Bank index out of range!");
 		return;
 	}
@@ -918,7 +918,7 @@ do_ds(int *ip)
 	}
 
 	/* check range */
-	if ((loccnt + value) > limit) {
+	if ((int)(loccnt + value) > limit) {
 		error("Out of range!");
 		return;
 	}
@@ -970,6 +970,8 @@ void
 do_fail(int *ip)
 {
 	fatal_error("Compilation failed!");
+
+	(void)(ip);
 }
 
 
@@ -1010,6 +1012,8 @@ do_section(int *ip)
 		loadlc(loccnt + (page << 13), 1);
 		println();
 	}
+
+	(void)(ip);
 }
 
 

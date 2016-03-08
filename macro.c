@@ -77,6 +77,9 @@ void
 do_endm(int *ip)
 {
 	error("Unexpected ENDM!");
+
+	(void)(ip);
+
 	return;
 }
 

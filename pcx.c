@@ -117,7 +117,7 @@ pcx_set_tile(struct t_symbol *ref, unsigned int offset)
 		return (1);
 
 	/* same tile set? */
-	if ((ref == NULL))
+	if (ref == NULL)
 		return (1);
 	if ((ref == tile_lablptr) && (offset == tile_offset))
 		return (1);
@@ -290,7 +290,7 @@ pcx_get_args(int *ip)
 		if (expr_lablcnt == 0)
 			error("No tile table reference!");
 		if (expr_lablcnt > 1) {
-			expr_lablcnt = NULL;
+			expr_lablcnt = 0;
 			error("Too many tile table references!");
 		}
 		if (!pcx_set_tile(expr_lablptr, value))
@@ -309,7 +309,7 @@ pcx_get_args(int *ip)
  */
 
 int
-pcx_parse_args(int i, int nb, int *a, int *b, int *c, int *d, int size)
+pcx_parse_args(int i, int nb, unsigned int *a, unsigned int *b, unsigned int *c, unsigned int *d, int size)
 {
 	int x, y, w, h;
 
@@ -363,7 +363,7 @@ pcx_load(char *name)
 	/* check if the file is the same as the previously loaded one;
 	 * if this is the case do not reload it
 	 */
-	if (strlen(name) && (strcasecmp(pcx_name, name) == NULL))
+	if (strlen(name) && (strcasecmp(pcx_name, name) == 0))
 		return (1);
 	else {
 		/* no it's a new file - ok let's prepare loading */
@@ -449,7 +449,7 @@ decode_256(FILE *f, int w, int h)
 		/* simple run-length encoding */
 		do {
 			c = fgetc(f);
-			if (c == EOF)
+			if (c == (unsigned int)EOF)
 				break;
 			if ((c & 0xC0) != 0xC0)
 				i = 1;
@@ -460,12 +460,12 @@ decode_256(FILE *f, int w, int h)
 			do {
 				x++;
 			   *ptr++ = c;
-				if (x == w) {
+				if (x == (unsigned int)w) {
 					x = 0;
 					y++;
 				}
 			} while (--i);
-		} while (y < h);
+		} while (y < (unsigned int)h);
 		break;
 
 	default:
@@ -474,9 +474,9 @@ decode_256(FILE *f, int w, int h)
 	}			
 
 	/* get the palette */
-	if (c != EOF)
+	if (c != (unsigned int)EOF)
 		c = fgetc(f);
-	while ((c != 12) && (c != EOF))
+	while ((c != 12) && (c != (unsigned int)EOF))
 		c = fgetc(f);
 	if (c == 12)
 		fread(pcx_pal, 768, 1, f);
@@ -517,7 +517,7 @@ decode_16(FILE *f, int w, int h)
 		do {
 			/* get a char */
 			c = fgetc(f);
-			if (c == EOF)
+			if (c == (unsigned int)EOF)
 				break;
 
 			/* check if it's a repeat command */

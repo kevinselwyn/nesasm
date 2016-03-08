@@ -111,7 +111,7 @@ int  pcx_pack_16x16_sprite(unsigned char *buffer, int x, int y);
 int  pcx_set_tile(struct t_symbol *ref, unsigned int offset);
 int  pcx_search_tile(unsigned char *data, int size);
 int  pcx_get_args(int *ip);
-int  pcx_parse_args(int i, int nb, int *a, int *b, int *c, int *d, int size);
+int  pcx_parse_args(int i, int nb, unsigned int *a, unsigned int *b, unsigned int *c, unsigned int *d, int size);
 int  pcx_load(char *name);
 void decode_256(FILE *fp, int w, int h);
 void decode_16(FILE *fp, int w, int h);

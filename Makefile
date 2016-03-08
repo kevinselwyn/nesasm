@@ -1,7 +1,8 @@
-CC  := gcc
-OBJ := assemble.o code.o command.o crc.o expr.o func.o input.o macro.o main.o mml.o nes.o output.o proc.o symbol.o pcx.o pce.o map.o
-BIN := nesasm
-RM  := rm -f
+FLAGS := -Wall -Wextra
+CC    := gcc $(FLAGS)
+OBJ   := assemble.o code.o command.o crc.o expr.o func.o input.o macro.o main.o mml.o nes.o output.o proc.o symbol.o pcx.o pce.o map.o
+BIN   := nesasm
+RM    := rm -f
 
 .PHONY: all all-before all-after clean clean-custom
 
