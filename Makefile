@@ -1,8 +1,9 @@
-FLAGS := -Wall -Wextra
-CC    := gcc $(FLAGS)
-OBJ   := assemble.o code.o command.o crc.o expr.o func.o input.o macro.o main.o mml.o nes.o output.o proc.o symbol.o pcx.o pce.o map.o
-BIN   := nesasm
-RM    := rm -f
+FLAGS   := -Wall -Wextra
+CC      := gcc $(FLAGS)
+OBJ     := assemble.o code.o command.o crc.o expr.o func.o input.o macro.o main.o mml.o nes.o output.o proc.o symbol.o pcx.o pce.o map.o
+BIN     := nesasm
+BIN_DIR := /usr/local/bin
+RM      := rm -f
 
 .PHONY: all all-before all-after clean clean-custom
 
@@ -64,3 +65,9 @@ pce.o: pce.c
 
 map.o: map.c
 	$(CC) -c map.c -o map.o $(CFLAGS)
+
+install:
+	install -m 0755 $(BIN) $(BIN_DIR)
+
+uninstall:
+	rm -f $(BIN_DIR)/$(BIN)
