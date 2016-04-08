@@ -31,7 +31,7 @@ struct t_opcode nes_pseudo[13] = {
 struct t_machine nes = {
 	MACHINE_NES,   /* type */
 	"NESASM", /* asm_name */
-	"NES Assembler (v3.1)", /* asm_title */
+	"NES Assembler (v3.2)", /* asm_title */
 	".nes",  /* rom_ext */
 	"NES_INCLUDE", /* include_env */
 	0x100,  /* zp_limit */

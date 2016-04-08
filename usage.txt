@@ -1,6 +1,6 @@
 
- -*[ NES ASM v2.51 ]*-
-    ---------------
+ -*[ NES ASM v3.2 ]*-
+    --------------
 
 
     Usage
@@ -22,30 +22,34 @@
         ------  -----------
 
          -s
-         -S     Show segment usage. If one of those options is specified
-                the assembler will display information on the ROM bank
-                usage. Use '-s' to show basic information and '-S' to
-                show more detailed information.
+         -S        Show segment usage. If one of those options is specified
+                   the assembler will display information on the ROM bank
+                   usage. Use '-s' to show basic information and '-S' to
+                   show more detailed information.
 
-         -l #   Control output of the listing file:
+         -l #      Control output of the listing file:
 
-                    0 - disable completely the listing file even if the
-                        LIST directive is used in the input file
-                    1 - minimun level; code produced by DB, DW and DEFCHR
-                        will not be dumped
-                    2 - normal level; only code produced by DEFCHR will not
-                        be dumped
-                    3 - maximun level; all the code is dumped in the
-                        listing file
+                       0 - disable completely the listing file even if the
+                           LIST directive is used in the input file
+                       1 - minimun level; code produced by DB, DW and DEFCHR
+                           will not be dumped
+                       2 - normal level; only code produced by DEFCHR will not
+                           be dumped
+                       3 - maximun level; all the code is dumped in the
+                           listing file
 
-                The default level is level 2.
+                   The default level is level 2.
 
-         -m     Force macros expansion in the listing file, even if the
-                MLIST directive is not seen in the input file.
+         -m        Force macros expansion in the listing file, even if the
+                   MLIST directive is not seen in the input file.
 
-         -raw   Control the header generation. By default the assembler
-                always adds an header to the ROM file; unless '-raw' is
-                specified, in this case no ROM header is generated.
+         -f        Outputs .fns file
+
+         -raw      Control the header generation. By default the assembler
+                   always adds an header to the ROM file; unless '-raw' is
+                   specified, in this case no ROM header is generated.
+
+         -t <bin>   Adds trailer binary
 
 
     Include path
