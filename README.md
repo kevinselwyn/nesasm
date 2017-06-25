@@ -27,11 +27,4 @@ infile   : file to be assembled
 
 ##Updates
 
-* Updated usage.txt
-* Updated Makefile
-* Updated max label/line sizes
-* Added flag for .fns output
-* Added trailer support
-* Cleaned up code (removed errors/warnings)
-
 See commit history for exact change details
