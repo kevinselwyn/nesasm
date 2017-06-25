@@ -88,7 +88,7 @@ do_endm(int *ip)
 struct t_macro *macro_look(int *ip)
 {
 	struct t_macro *ptr;
-	char name[128];
+	char name[32];
 	char c;
 	int  hash;
 	int  l;
@@ -106,7 +106,7 @@ struct t_macro *macro_look(int *ip)
 			if (isdigit(c))
 				return (NULL);
 		}
-		if (l == 127)
+		if (l == 31)
 			return (NULL);
 		name[l++] = c;
 		hash += c;
