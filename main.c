@@ -507,11 +507,14 @@ main(int argc, char **argv)
 				fclose(fp);
 			}
 		}
+		/* close listing file
+		 * Note: This is only done if there was no error.
+		 * If there was an error, no lst_fp is opened.*/
+		if (xlist && list_level)
+			fclose(lst_fp);
 	}
 
-	/* close listing file */
-	if (xlist && list_level)
-		fclose(lst_fp);
+
 
 	/* close input file */
 	fclose(in_fp);
