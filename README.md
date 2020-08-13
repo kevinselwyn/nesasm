@@ -1,14 +1,14 @@
-#nesasm
+# nesasm
 
 Fork of nesasm v3.1: [http://www.nespowerpak.com/nesasm/](http://www.nespowerpak.com/nesasm/)
 
-##Installation
+## Installation
 
 ```
 make && sudo make install
 ```
 
-##Usage
+## Usage
 
 ```
 NES Assembler (v3.2)
@@ -25,7 +25,7 @@ nesasm [-options] [-? (for help)] infile
 infile   : file to be assembled
 ```
 
-##Updates
+## Updates
 
 * Updated usage.txt
 * Updated Makefile
